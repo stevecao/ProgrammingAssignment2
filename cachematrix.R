@@ -8,6 +8,7 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 	im <- NULL  #Set inverse matrix (im) to NULL
+	#Check if it's a square matrix
 	if (ncol (x) == nrow(x)) { 
 		#This set function stores the new matrix in the global environment
 		set <- function (newMatrix) {
@@ -17,19 +18,19 @@ makeCacheMatrix <- function(x = matrix()) {
 		#This get function returns the stored matrix
 		get <- function() x 
 
-		#This setInverseMatrix store the inverse matrix in global environment
+		#This setInverseMatrix stores the inverse matrix in global environment
 		setInverseMatrix <- function (inverseMatrix) {
 			im <<- inverseMatrix #store the inverse matrix in global environment variable im
 		}
 
-		#This getInverseMatrix function stores the inverse matrix in global environment
+		#This getInverseMatrix function retrieves the inverse matrix in global environment
 		getInverseMatrix <- function() im
 
 		#Return a list of 4 functions
 		list (set=set, get=get, setInverseMatrix=setInverseMatrix, 
 			getInverseMatrix=getInverseMatrix)
 
-	} else {
+	} else {  #If the input is not a square matrix, output a warning message.
 		message ("The input matrix is not a square matrix.")
 		message ("Please input a square matrix (nrow = ncol)")
 	}
